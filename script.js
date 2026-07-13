@@ -7,6 +7,13 @@ nav.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => nav.classList.remove('open'));
 });
 
+// Temporary published fallback: use the bundled hero visual anywhere an image asset is unavailable.
+document.querySelectorAll('img').forEach((img) => {
+  img.addEventListener('error', () => {
+    img.src = 'assets/hero-interior.svg';
+  }, { once: true });
+});
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) entry.target.classList.add('visible');
